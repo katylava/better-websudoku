@@ -20,7 +20,7 @@ $(document).ready(function(){
     })
 
   function highlightSame(number, multisOnly) {
-    $('td > input.highlighted').removeClass('highlighted')
+    if (!multisOnly) $('td > input.highlighted').removeClass('highlighted')
     if (number.length == 1) {
       els = $('td > input[value*="'+number+'"]')
       if (multisOnly) els = els.filter('.multi')
