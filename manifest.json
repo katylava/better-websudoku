@@ -1,11 +1,15 @@
 {
-   "content_scripts": [ { 
-      "css": [ "css/enhancements.css" ],
-      "js": [ "js/jquery.min.js", "js/enhancements.js" ],
-      "matches": [ "http://www.websudoku.com/*", "http://view.websudoku.com/*", "http://show.websudoku.com/*" ],
-      "runat": "document_end"
-   } ],
+   "content_scripts": [ 
+     { 
+        "matches": [ "http://*/*", "https://*/*" ], 
+        "include_globs": [ "*show.websudoku.com/*", "*view.websudoku.com/*" ],
+        "css": [ "css/enhancements.css" ],
+        "js": [ "js/jquery.min.js", "js/enhancements.js" ],
+        "all_frames": true,
+        "run_at": "document_end"
+     } 
+   ],
    "description": "Better interface for websudoku.com -- larger board, better fonts and colors.",
    "name": "Better Web Sudoku",
-   "version": "0.0.1"
+   "version": "0.2.0"
 }
