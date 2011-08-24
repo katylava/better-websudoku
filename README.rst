@@ -9,6 +9,7 @@ Enhancements include:
   - Highlight background of selected row, column, and block
   - Highlight value of cells matching value of current cell
   - Auto-clear notes
+  - Highlight background of selected cell even if it's readonly
 
 .. image:: https://github.com/katylava/better-websudoku/raw/master/BetterWebSudoku-screenshot.png
 
