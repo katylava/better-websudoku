@@ -1,4 +1,5 @@
 $(document).ready(function(){
+
   var lastFocus = false
   $("td > input")
     .focus(function(ev){
@@ -19,6 +20,10 @@ $(document).ready(function(){
       }
     })
 
+  $('form > p > input[type="submit"]').click(function(ev){
+    refreshStyles()
+  })
+
   function highlightSame(number, multisOnly) {
     if (!multisOnly) $('td > input.highlighted').removeClass('highlighted')
     if (number.length == 1) {
@@ -28,6 +33,10 @@ $(document).ready(function(){
     } else {
       $.each(number.split(''), function(i,v){ highlightSame(v, true) })
     }
+  }
+
+  function refreshStyles() {
+    $('td > input:not([readonly])').trigger('keyup')
   }
 
 })
