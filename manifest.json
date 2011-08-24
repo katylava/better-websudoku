@@ -11,5 +11,5 @@
    ],
    "description": "Better interface for websudoku.com -- larger board, better fonts and colors.",
    "name": "Better Web Sudoku",
-   "version": "0.2.1"
+   "version": "0.3.0"
 }
