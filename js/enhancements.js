@@ -40,7 +40,7 @@ $(document).ready(function(){
 
   function getRelatedIds(el) {
     var tmp
-    var id = $(el).attr('id').replace('f','c')
+    var id = $(el).attr('id')
     var blocks = {c0:[1,2],c1:[0,2],c2:[0,1],c3:[4,5],c4:[3,5],c5:[3,4],c6:[7,8],c7:[6,8],c8:[6,7]}
     var scopes = [0,1,2,3,4,5,6,7,8]
     var col = id.split('')[1]
@@ -48,6 +48,7 @@ $(document).ready(function(){
     var rowBlock = blocks['c'+row]
     var colBlock = blocks['c'+col]
     var val = $('#'+id).val()
+    var cid = id.replace('f','c')
     var ids = []
 
     for (var i in scopes) {
@@ -62,16 +63,14 @@ $(document).ready(function(){
         if (ids.indexOf(tmp) < 0) ids.push(tmp)
       }
     }
-    ids.splice(ids.indexOf(id), 1)
-    return ids
+    ids.splice(ids.indexOf(cid), 1)
+    return ids.map(function(s){ return '#'+s }).join(',')
   }
 
   function highlightRelated(el) {
     $('.related').removeClass('related')
     var ids = getRelatedIds(el)
-    $.each(ids, function(i,v){
-      $('#'+v).addClass('related')
-    })
+    $(ids).addClass('related')
   }
 
   function refreshStyles() {
@@ -80,13 +79,12 @@ $(document).ready(function(){
 
   function removeNotes(basedOnEl) {
     var ids = getRelatedIds(basedOnEl)
-    $.each(ids, function(i,v){
-      var el = $('#'+v)
-      if (el.hasClass('multi')) {
-        var oldVal = el.val()
-        el.val(oldVal.replace($(basedOnEl).val(), ''))
-      }
+    var rep = $(basedOnEl).val()
+    $(ids).children('.multi').each(function(i){
+      var newVal = $(this).val().replace(rep, '')
+      $(this).attr('value', newVal)
     })
+    highlightSame(rep)
   }
 
 })
