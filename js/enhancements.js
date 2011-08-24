@@ -5,6 +5,7 @@ $(document).ready(function(){
   $("td > input")
     .focus(function(ev){
       highlightSame($(this).val())
+      highlightRelated(this)
       $(this).select()
       if (lastFocus) {
         lastFocus.attr('value', lastFocus.val()) // inline blur event removes value
@@ -15,11 +16,11 @@ $(document).ready(function(){
       highlightSame($(this).val())
       if ($(this).val().length > 1) {
         $(this).addClass('multi')
-      }
-      else if ($(this).hasClass('multi')) {
+      } else {
         $(this).removeClass('multi')
       }
-      removeNotes($(this).attr('id'))
+    }).change(function(ev){
+      if (!$(this).hasClass('multi')) removeNotes(this)
     })
 
   $('form > p > input[type="submit"]').click(function(ev){
@@ -37,13 +38,10 @@ $(document).ready(function(){
     }
   }
 
-  function refreshStyles() {
-    $('td > input:not([readonly])').trigger('keyup')
-  }
-
-  function removeNotes(id) {
+  function highlightRelated(el) {
     $('.matchable').removeClass('matchable')
 
+    var id = $(el).attr('id')
     var tmp
     var blocks = {c0:[1,2],c1:[0,2],c2:[0,1],c3:[4,5],c4:[3,5],c5:[3,4],c6:[7,8],c7:[6,8],c8:[6,7]}
     var scopes = [0,1,2,3,4,5,6,7,8]
@@ -70,18 +68,17 @@ $(document).ready(function(){
     $.each(ids, function(i,v){
       $('#'+v).addClass('matchable')
     })
-    $('.matchable.multi').each(function(){
-      updateMultiVal(this, val)
-    })
-
-
   }
 
+  function refreshStyles() {
+    $('td > input:not([readonly])').trigger('keyup')
+  }
 
-  function updateMultiVal(el, num) {
-    var val = $(el).val()
-    newVal = newVal.replace(num, '')
-    $(el).val(newVal)
+  function removeNotes(el) {
+    $('td.matchable input.multi').not(el).each(function(){
+      var oldVal = $(this).val()
+      $(this).val(oldVal.replace($(el).val(), ''))
+    })
   }
 
 })
