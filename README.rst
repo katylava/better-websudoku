@@ -25,17 +25,17 @@ __ http://www.levien.com/type/myfonts/inconsolata.html
 Stuff You Should Know
 ---------------------
 
-- If you click "Pause", "Print", or "Options" some of the cells
-   will lose their style when you return to the game.  You can click "How am I doing?"
-   to refresh.
-- This extension does not yet auto-update.
+If you click "Pause", "Print", or "Options" some of the cells
+will lose their style when you return to the game.  You can click "How am I doing?"
+to refresh.
+
+This extension does not yet auto-update.
 
 To Do
 -----
 
 Add Options Page
-  Make styles configurable
-  Disable auto-clearing of notes
+  Make styles configurable; Disable auto-clearing of notes
 
 Alternate Keyboard Input
   Add option to map keys to digits so one could, for example,
