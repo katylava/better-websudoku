@@ -21,6 +21,7 @@ $(document).ready(function(){
       }
     }).change(function(ev){
       if ($(this).val().length == 1) removeNotes(this)
+      if ($(this).hasClass('multi')) $(this).attr('value', $(this).val())
     })
 
   $('form > p > input[type="submit"]').click(function(ev){
@@ -83,6 +84,7 @@ $(document).ready(function(){
     $(ids).children('.multi').each(function(i){
       var newVal = $(this).val().replace(rep, '')
       $(this).attr('value', newVal)
+      if (newVal.length == 1) $(this).removeClass('multi').trigger('change')
     })
     highlightSame(rep)
   }
