@@ -16,8 +16,8 @@ Enhancements include:
 Installation
 ------------
 
-Click on the BetterWebSudoku.crx file in "Downloads". The font used is "Inconsolata",
-which you can download `here`__.
+Click `here <https://github.com/downloads/katylava/better-websudoku/BetterWebSudoku.crx>`_
+to install.  The font used is "Inconsolata", which you can download `here`__.
 
 __ http://www.levien.com/type/myfonts/inconsolata.html
 
