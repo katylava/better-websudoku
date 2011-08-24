@@ -20,7 +20,7 @@ $(document).ready(function(){
         $(this).removeClass('multi')
       }
     }).change(function(ev){
-      if (!$(this).hasClass('multi')) removeNotes(this)
+      if ($(this).val().length == 1) removeNotes(this)
     })
 
   $('form > p > input[type="submit"]').click(function(ev){
@@ -38,11 +38,9 @@ $(document).ready(function(){
     }
   }
 
-  function highlightRelated(el) {
-    $('.matchable').removeClass('matchable')
-
-    var id = $(el).attr('id')
+  function getRelatedIds(el) {
     var tmp
+    var id = $(el).attr('id').replace('f','c')
     var blocks = {c0:[1,2],c1:[0,2],c2:[0,1],c3:[4,5],c4:[3,5],c5:[3,4],c6:[7,8],c7:[6,8],c8:[6,7]}
     var scopes = [0,1,2,3,4,5,6,7,8]
     var col = id.split('')[1]
@@ -64,9 +62,15 @@ $(document).ready(function(){
         if (ids.indexOf(tmp) < 0) ids.push(tmp)
       }
     }
+    ids.splice(ids.indexOf(id), 1)
+    return ids
+  }
 
+  function highlightRelated(el) {
+    $('.related').removeClass('related')
+    var ids = getRelatedIds(el)
     $.each(ids, function(i,v){
-      $('#'+v).addClass('matchable')
+      $('#'+v).addClass('related')
     })
   }
 
@@ -74,10 +78,14 @@ $(document).ready(function(){
     $('td > input:not([readonly])').trigger('keyup')
   }
 
-  function removeNotes(el) {
-    $('td.matchable input.multi').not(el).each(function(){
-      var oldVal = $(this).val()
-      $(this).val(oldVal.replace($(el).val(), ''))
+  function removeNotes(basedOnEl) {
+    var ids = getRelatedIds(basedOnEl)
+    $.each(ids, function(i,v){
+      var el = $('#'+v)
+      if (el.hasClass('multi')) {
+        var oldVal = el.val()
+        el.val(oldVal.replace($(basedOnEl).val(), ''))
+      }
     })
   }
 
