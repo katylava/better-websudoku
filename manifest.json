@@ -1,7 +1,7 @@
 {
    "content_scripts": [ 
      { 
-        "matches": [ "http://*/*", "https://*/*" ], 
+        "matches": [ "http://*.websudoku.com/*" ], 
         "include_globs": [ "*show.websudoku.com/*", "*view.websudoku.com/*" ],
         "css": [ "css/enhancements.css" ],
         "js": [ "js/jquery.min.js", "js/enhancements.js" ],
