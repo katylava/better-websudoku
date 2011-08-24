@@ -25,6 +25,10 @@ td > input.multi {
   font-size:14px;
 }
 
+table.t td.matchable {
+  background:#ffd;
+}
+
 
 /* hide ads */
 form > a, form > ins { display:none !important; }
