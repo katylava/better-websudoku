@@ -1,8 +1,7 @@
 $(document).ready(function(){
 
-  var keycodes = { k49: '1', k50: '2', k51: '3', k52: '4', k53: '5', k54: '6', k55: '7', k56: '8', k57: '9' }
-  var lastFocus = false
 
+  var lastFocus = false
   $("td > input")
     .focus(function(ev){
       highlightSame($(this).val())
@@ -14,23 +13,15 @@ $(document).ready(function(){
       lastFocus = $(this)
     })
     .keyup(function(ev){
-      var val = $(this).val()
-      var chr = keycodes['k'+ev.which]
-
-      if (val.indexOf(chr) != val.lastIndexOf(chr)) {
-        $(this).attr('value', strReplaceAll(val, chr, ''))
-      }
-      highlightSame(val)
-
-      if (val.length > 1) {
+      highlightSame($(this).val())
+      if ($(this).val().length > 1) {
         $(this).addClass('multi')
       } else {
         $(this).removeClass('multi')
       }
     }).change(function(ev){
-      var val = $(this).val()
-      if (val.length == 1) removeNotes(this)
-      if ($(this).hasClass('multi')) $(this).attr('value', val)
+      if ($(this).val().length == 1) removeNotes(this)
+      if ($(this).hasClass('multi')) $(this).attr('value', $(this).val())
     })
 
   $('form > p > input[type="submit"]').click(function(ev){
@@ -96,11 +87,6 @@ $(document).ready(function(){
       if (newVal.length == 1) $(this).removeClass('multi').trigger('change')
     })
     highlightSame(rep)
-  }
-
-  function strReplaceAll(str, find, repl) {
-    var reg = new RegExp(find, 'g')
-    return str.replace(reg, repl)
   }
 
 })
