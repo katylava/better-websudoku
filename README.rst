@@ -1,4 +1,4 @@
-Better WebSudoku version 0.3.1
+Better WebSudoku version 0.4.0
 ==============================
 
 Better WebSudoku is a Google Chrome extension to enhance the UI of WebSudoku.com.
@@ -10,6 +10,7 @@ Enhancements include:
   - Highlight value of cells matching value of current cell
   - Auto-clear notes
   - Highlight background of selected cell even if it's readonly
+  - Move around with h-j-k-l (left, down, up, right)
 
 .. image:: https://github.com/katylava/better-websudoku/raw/master/BetterWebSudoku-screenshot.png
 
