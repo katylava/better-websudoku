@@ -1,32 +1,61 @@
 $(document).ready(function(){
 
-
-  var lastFocus = false
   $("td > input")
     .focus(function(ev){
       highlightSame($(this).val())
       highlightRelated(this)
-      $(this).select()
-      if (lastFocus) {
-        lastFocus.attr('value', lastFocus.val()) // inline blur event removes value
-      }
-      lastFocus = $(this)
+    })
+    .keypress(function(ev){
+      var chr  = String.fromCharCode(ev.which)
+      if ($.inArray(chr, ['h','j','k','l']) != -1) {
+        move(this, chr)
+      } 
     })
     .keyup(function(ev){
-      highlightSame($(this).val())
-      if ($(this).val().length > 1) {
+      var val = $(this).val()
+      highlightSame(val)
+      if (val.length > 1) {
         $(this).addClass('multi')
       } else {
         $(this).removeClass('multi')
       }
-    }).change(function(ev){
+    })
+    .change(function(ev){
       if ($(this).val().length == 1) removeNotes(this)
       if ($(this).hasClass('multi')) $(this).attr('value', $(this).val())
+    })
+    .blur(function(ev){
+      var val = strReplaceAll($(this).val(), '[hjkl]', '')
+      $(this).attr('value', val)
     })
 
   $('form > p > input[type="submit"]').click(function(ev){
     refreshStyles()
   })
+
+  function move(el, direction) {
+    var moves = getNearbyIds(el), val = $(el).val()
+    moves.j = moves.down
+    moves.k = moves.up
+    moves.h = moves.left
+    moves.l = moves.right
+    $(this).blur()
+    $('#'+moves[direction]).focus()
+  }
+
+  function getNearbyIds(el) {
+    var id = $(el).attr('id')
+    var upVal = id[2]=='0' ? '8' : parseInt(id[2])-1
+    var dnVal = id[2]=='8' ? '0' : parseInt(id[2])+1
+    var lfVal = id[1]=='0' ? '8' : parseInt(id[1])-1
+    var rtVal = id[1]=='8' ? '0' : parseInt(id[1])+1
+    return {
+      up: id[0]+id[1]+upVal,
+      down: id[0]+id[1]+dnVal,
+      left: id[0]+lfVal+id[2],
+      right: id[0]+rtVal+id[2]
+    }
+  }
 
   function highlightSame(number, multisOnly) {
     if (!multisOnly) $('td > input.highlighted').removeClass('highlighted')
@@ -87,6 +116,11 @@ $(document).ready(function(){
       if (newVal.length == 1) $(this).removeClass('multi').trigger('change')
     })
     highlightSame(rep)
+  }
+
+  function strReplaceAll(str, find, repl) {
+    var reg = new RegExp(find, 'g')
+    return str.replace(reg, repl)
   }
 
 })
