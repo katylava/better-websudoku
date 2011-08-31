@@ -1,5 +1,7 @@
 $(document).ready(function(){
 
+  $('#f44').focus()
+
   $("td > input")
     .focus(function(ev){
       highlightSame($(this).val())

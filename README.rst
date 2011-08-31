@@ -1,5 +1,5 @@
-Better WebSudoku version 0.4.0
-==============================
+Better WebSudoku
+================
 
 Better WebSudoku is a Google Chrome extension to enhance the UI of WebSudoku.com.
 
