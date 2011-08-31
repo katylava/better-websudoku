@@ -4,22 +4,28 @@ $(document).ready(function(){
 
   $("td > input")
     .focus(function(ev){
+      $(this).attr('maxlength', 7)
       highlightSame($(this).val())
       highlightRelated(this)
+      $(this).select()
     })
     .keypress(function(ev){
-      var chr  = String.fromCharCode(ev.which)
+      var chr = String.fromCharCode(ev.which)
       if ($.inArray(chr, ['h','j','k','l']) != -1) {
         move(this, chr)
       } 
     })
     .keyup(function(ev){
+      var chr = String.fromCharCode(ev.which)
       var val = $(this).val()
       highlightSame(val)
       if (val.length > 1) {
         $(this).addClass('multi')
       } else {
         $(this).removeClass('multi')
+      }
+      if (val.indexOf(chr) != val.lastIndexOf(chr)){
+        $(this).val(strReplaceAll(val, chr, ''))
       }
     })
     .change(function(ev){
