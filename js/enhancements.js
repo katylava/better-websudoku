@@ -2,7 +2,7 @@ $(document).ready(function(){
 
   $('#f44').focus()
 
-  $("td > input")
+  $("table.t td > input")
     .focus(function(ev){
       $(this).attr('maxlength', 7)
       highlightSame($(this).val())

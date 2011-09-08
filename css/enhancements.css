@@ -10,18 +10,18 @@ td .v0, td .v1, td .v2, td .v3 {
   color:#333;
 }
 
-td > input[readonly] {
+table.t td > input[readonly] {
   color:#666;
 }
 
-td > input:focus {
+table.t td > input:focus {
   background: #fedd95;
 }
 
-td > input.highlighted {
+table.t td > input.highlighted {
   color:blue;
 }
-td > input.multi {
+table.t td > input.multi {
   font-size:14px;
 }
 
