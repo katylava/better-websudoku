@@ -2,6 +2,20 @@ $(document).ready(function(){
 
   $('#f44').focus()
 
+  $('body').keypress(function(ev){
+    var chr = String.fromCharCode(ev.which)
+    if (chr == ' ') {
+      if ($('input[name="pause"]').length) {
+        $('input[name="pause"]').click()
+      } else {
+        $('input[name="resume"]').click()
+      }
+    }
+    else if (chr == 'r') {
+      refreshStyles()
+    }
+  })
+
   $("table.t td > input")
     .focus(function(ev){
       $(this).attr('maxlength', 7)
@@ -37,7 +51,7 @@ $(document).ready(function(){
       $(this).attr('value', val)
     })
 
-  $('form > p > input[type="submit"]').click(function(ev){
+  $('form > p > input[name="submit"]').click(function(ev){
     refreshStyles()
   })
 
