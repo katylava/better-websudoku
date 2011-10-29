@@ -11,6 +11,7 @@ Enhancements include:
   - Auto-clear notes
   - Highlight background of selected cell even if it's readonly
   - Move around with h-j-k-l (left, down, up, right)
+  - Press space to pause/resume (press 'r' after resume to refresh styles)
 
 .. image:: https://github.com/katylava/better-websudoku/raw/master/BetterWebSudoku-screenshot.png
 
@@ -18,7 +19,7 @@ Enhancements include:
 Installation
 ------------
 
-Click `here <https://github.com/downloads/katylava/better-websudoku/BetterWebSudoku.crx>`_
+Click `here <https://github.com/downloads/katylava/better-websudoku/BetterWebSudoku.0.4.3.crx>`_
 to install.  The font used is "Inconsolata", which you can download `here`__.
 
 __ http://www.levien.com/type/myfonts/inconsolata.html
@@ -29,7 +30,7 @@ Stuff You Should Know
 
 If you click "Pause", "Print", or "Options" some of the cells
 will lose their style when you return to the game.  You can click "How am I doing?"
-to refresh.
+or press 'r' to refresh.
 
 This extension does not yet auto-update.
 
@@ -51,12 +52,5 @@ Provide Update URL
   `Create auto-update manifest`__ and add update_url to manifest.json.
 
 __ http://code.google.com/chrome/extensions/autoupdate.html
-
-
-
-
-
-
-
 
 
