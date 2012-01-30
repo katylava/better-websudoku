@@ -38,7 +38,8 @@ To Do
 -----
 
 Add Options Page
-  Make styles configurable; Disable auto-clearing of notes
+  Make styles configurable; Disable auto-clearing of notes;
+  Set font (don't make Inconsolata default); Set movement keys
 
 Alternate Keyboard Input
   Add option to map keys to digits so one could, for example,
@@ -47,10 +48,9 @@ Alternate Keyboard Input
 Add Information Bar
   Include information about how many times each digit is used.
 
-
 Provide Update URL
   `Create auto-update manifest`__ and add update_url to manifest.json.
 
 __ http://code.google.com/chrome/extensions/autoupdate.html
 
-
+Be a pro and refactor as a class instead of this mess of functions.
